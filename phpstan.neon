@@ -1,0 +1,9 @@
+parameters:
+	level: max
+	paths:
+		- src
+		- tests
+	doctrine:
+		objectManagerLoader: tests/object-manager.php
+	excludePaths:
+		- tests/object-manager.php
