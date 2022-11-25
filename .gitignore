@@ -1,4 +1,7 @@
+###> Generic ###
 /.idea
+/infra/database
+###< Generic ###
 
 ###> symfony/framework-bundle ###
 /.env.local
