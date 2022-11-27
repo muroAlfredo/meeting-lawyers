@@ -119,3 +119,4 @@ nelmio_api_doc:
             - { alias: CreateWorkEntryDto, type: App\Dto\WorkEntry\CreateWorkEntryDto }
             - { alias: UpdateWorkEntryDto, type: App\Dto\WorkEntry\UpdateWorkEntryDto }
             - { alias: GetWorkEntryResponse, type: App\Response\WorkEntry\GetWorkEntryResponse }
+            - { alias: GetWorkEntriesCollectionResponse, type: App\Response\WorkEntry\GetWorkEntriesCollectionResponse }

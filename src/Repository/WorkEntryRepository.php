@@ -37,4 +37,17 @@ class WorkEntryRepository extends ServiceEntityRepository
             'deletedAt' => null,
         ]);
     }
+
+    /**
+     * @return array<int, WorkEntry>|null
+     */
+    public function findWorkEntriesNotDeleted(int $limit, int $offset): ?array
+    {
+        return $this->createQueryBuilder('we')
+            ->andWhere('we.deletedAt IS NULL')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult();
+    }
 }

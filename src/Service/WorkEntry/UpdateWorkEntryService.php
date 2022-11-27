@@ -13,7 +13,7 @@ use App\Repository\WorkEntryRepository;
 use App\Response\User\GetUserResponse;
 use App\Response\WorkEntry\GetWorkEntryResponse;
 
-class UpdateWorkEntryService
+final class UpdateWorkEntryService
 {
     public function __construct(
         private readonly UserRepository $userRepository,

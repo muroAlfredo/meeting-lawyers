@@ -8,7 +8,6 @@ use App\Entity\User;
 use App\Exception\UserNotFoundException;
 use App\Repository\UserRepository;
 use App\Response\User\GetUserResponse;
-use App\Service\User\DeleteUserService;
 use App\Service\User\GetUserService;
 use PHPUnit\Framework\TestCase;
 
