@@ -50,6 +50,15 @@ nelmio_api_doc:
                             example:
                                 code: 404
                                 message: "[UserNotFoundException] Entity of type 'User' for ID '3000' was not found!"
+                404WorkEntryNotFound:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/NotFoundExceptionResponse'
+                            example:
+                                code: 404
+                                message: "[WorkEntryNotFound] Entity of type 'WorkEntry' for ID '3000' was not found!"
             schemas:
                 CreateUserDto:
                     required:
