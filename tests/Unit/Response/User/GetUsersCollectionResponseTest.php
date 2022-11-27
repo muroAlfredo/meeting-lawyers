@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Response;
+namespace App\Tests\Unit\Response\User;
 
 use App\Response\User\GetUserResponse;
 use App\Response\User\GetUsersCollectionResponse;

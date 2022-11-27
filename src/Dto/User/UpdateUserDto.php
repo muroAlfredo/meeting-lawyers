@@ -11,9 +11,9 @@ use Webmozart\Assert\Assert;
 class UpdateUserDto
 {
     public function __construct(
-        #[OAT\Property(property: 'name', example: 'name username')]
+        #[OAT\Property(property: 'name', type: 'string', example: 'name username')]
         public readonly string $name,
-        #[OAT\Property(property: 'email', example: 'email@example.com')]
+        #[OAT\Property(property: 'email', type: 'email', example: 'email@example.com')]
         public readonly string $email,
     ) {
     }

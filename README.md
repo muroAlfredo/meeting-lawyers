@@ -46,13 +46,13 @@ Para acceder a los contenedores podemos utilizar uno de los comandos siguientes:
 
 ```shell
 # para acceder al contenedor de base de datos
-docker exec -it database_work_entry_app bash
+docker exec -it database_work_entry bash
 
 # para acceder al contenedor de nginx
-docker exec -it nginx_work_entry_app sh
+docker exec -it nginx_work_entry sh
 
 # para acceder al contenedor de php
-docker exec -it php_work_entry_app bash
+docker exec -it php_work_entry bash
 ```
 
 Para nuestra aplicación se utiliza el framework de Symfony concretamente en su versión 5.4
@@ -76,18 +76,16 @@ DATABASE_URL="mysql://user:password@database_work_entry:3306/work_entry?serverVe
 Lanzaremos las migraciones para construir nuestro modelo de datos con el siguiente comando desde
 dentro del contenedor de php
 
-
-
-
-
-
+```shell
+php bin/console doctrine:migrations:migrate
+```
 
 #### Test
 
-Para ejecutar los test podemos usar el siguiente comando
+Para ejecutar los test podemos usar el siguiente comando o desde dentro del propio contenedor
 
 ```
-docker exec -it  nombre_del_contenedor /bin/phpunit 
+docker exec -it  php_work_entry /bin/phpunit 
 ```
 
 
@@ -95,11 +93,11 @@ docker exec -it  nombre_del_contenedor /bin/phpunit
 
 Limpieza de caché:
 ```
-docker exec -it nombre_del_contenedor bin/console cache:clear
+docker exec -it php_work_entry bin/console cache:clear
 ```
 
 Instalar dependencias de composer:
 ```
-docker exec -it nombre_del_contenedor composer install
+docker exec -it php_work_entry composer install
 ```
 
