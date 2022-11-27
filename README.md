@@ -85,7 +85,7 @@ php bin/console doctrine:migrations:migrate
 Para ejecutar los test podemos usar el siguiente comando o desde dentro del propio contenedor
 
 ```
-docker exec -it  php_work_entry /bin/phpunit 
+docker exec -it  php_work_entry bin/phpunit 
 ```
 
 
@@ -100,4 +100,9 @@ Instalar dependencias de composer:
 ```
 docker exec -it php_work_entry composer install
 ```
+
+He realizado algunos comandos para lanzarlos desde en composer para hacer más sencillo su uso.
+Los puedes ver dentro del archivo de la raíz del proyecto composer.json
+
+
 
