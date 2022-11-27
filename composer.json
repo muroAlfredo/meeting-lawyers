@@ -65,7 +65,12 @@
             "@auto-scripts"
         ],
         "phpstan": "phpstan analyse -c phpstan.neon --no-progress",
-        "php-cs-fixer": "php-cs-fixer fix src --verbose --diff",
+        "php-cs-fixer-src": "php-cs-fixer fix src --verbose --diff",
+        "php-cs-fixer-test": "php-cs-fixer fix tests --verbose --diff",
+        "php-cs-fixer": [
+            "@php-cs-fixer-src",
+            "@php-cs-fixer-tests"
+        ],
         "update-database-test": "php bin/console doctrine:schema:update -e test -f",
         "test": "bin/phpunit",
         "ci": [
