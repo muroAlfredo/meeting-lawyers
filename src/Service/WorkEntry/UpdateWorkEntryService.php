@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\WorkEntry;
 
-use App\Dto\WorkEntry\CreateWorkEntryDto;
+use App\Dto\WorkEntry\UpdateWorkEntryDto;
 use App\Entity\User;
 use App\Entity\WorkEntry;
 use App\Exception\UserNotFoundException;
@@ -13,7 +13,7 @@ use App\Repository\WorkEntryRepository;
 use App\Response\User\GetUserResponse;
 use App\Response\WorkEntry\GetWorkEntryResponse;
 
-class CreateWorkEntryService
+class UpdateWorkEntryService
 {
     public function __construct(
         private readonly UserRepository $userRepository,
@@ -21,7 +21,7 @@ class CreateWorkEntryService
     ) {
     }
 
-    public function execute(CreateWorkEntryDto $createWorkEntryDto): GetWorkEntryResponse
+    public function execute(int $id, UpdateWorkEntryDto $createWorkEntryDto): GetWorkEntryResponse
     {
         $userId = $createWorkEntryDto->userId;
         $user = $this->userRepository->findUserByIdNotDeleted($userId);
@@ -30,7 +30,14 @@ class CreateWorkEntryService
             throw new UserNotFoundException($userId);
         }
 
-        $workEntry = $this->createWorkEntry($user, $createWorkEntryDto);
+        $workEntry = $this->workEntryRepository->findWorkEntryByIdNotDeleted($id);
+
+        if (null === $workEntry) {
+            $workEntry = new WorkEntry();
+        }
+
+        $workEntry = $this->updateWorkEntry($user, $workEntry, $createWorkEntryDto);
+
         $this->workEntryRepository->save($workEntry, true);
 
         $userResponse = $this->getUserResponse($user);
@@ -56,14 +63,13 @@ class CreateWorkEntryService
         );
     }
 
-    private function createWorkEntry(User $user, CreateWorkEntryDto $createWorkEntryDto): WorkEntry
+    private function updateWorkEntry(User $user, WorkEntry $workEntry, UpdateWorkEntryDto $updateWorkEntryDto): WorkEntry
     {
-        $workEntry = new WorkEntry();
         $workEntry->setUser($user);
-        $workEntry->setStartDate($createWorkEntryDto->startDate);
+        $workEntry->setStartDate($updateWorkEntryDto->startDate);
 
-        if ($createWorkEntryDto->endDate) {
-            $workEntry->setEndDate($createWorkEntryDto->endDate);
+        if ($updateWorkEntryDto->endDate) {
+            $workEntry->setEndDate($updateWorkEntryDto->endDate);
         }
 
         return $workEntry;

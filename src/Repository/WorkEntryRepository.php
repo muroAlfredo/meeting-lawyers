@@ -29,4 +29,12 @@ class WorkEntryRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findWorkEntryByIdNotDeleted(int $id): ?WorkEntry
+    {
+        return $this->findOneBy([
+            'id' => $id,
+            'deletedAt' => null,
+        ]);
+    }
 }

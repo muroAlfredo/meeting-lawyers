@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\WorkEntry;
 
-use App\Dto\WorkEntry\CreateWorkEntryDto;
+use App\Dto\WorkEntry\UpdateWorkEntryDto;
 use App\Entity\User;
 use App\Entity\WorkEntry;
 use App\Repository\UserRepository;
 use App\Repository\WorkEntryRepository;
-use App\Service\WorkEntry\CreateWorkEntryService;
+use App\Service\WorkEntry\UpdateWorkEntryService;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
-class CreateWorkEntryServiceTest extends TestCase
+class UpdateWorkEntryServiceTest extends TestCase
 {
     public function testExecute(): void
     {
@@ -27,7 +27,7 @@ class CreateWorkEntryServiceTest extends TestCase
             ->method('findUserByIdNotDeleted')
             ->willReturn($user);
         $workEntryRepository = $this->createMock(WorkEntryRepository::class);
-        $createWorkEntryDto = new CreateWorkEntryDto(1, new DateTime);
+        $updateWorkEntryDto = new UpdateWorkEntryDto(1, new DateTime);
         /** @var WorkEntry $workEntryObject */
         $workEntryObject = null;
         $workEntryRepository->expects($this->once())
@@ -41,8 +41,8 @@ class CreateWorkEntryServiceTest extends TestCase
                 }
             );
 
-        $workEntryService = new CreateWorkEntryService($userRepository, $workEntryRepository);
-        $response = $workEntryService->execute($createWorkEntryDto);
+        $workEntryService = new UpdateWorkEntryService($userRepository, $workEntryRepository);
+        $response = $workEntryService->execute(1, $updateWorkEntryDto);
 
         $this->assertEquals($workEntryObject->getStartDate(), $response->startDate);
     }

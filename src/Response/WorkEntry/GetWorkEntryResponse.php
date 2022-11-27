@@ -42,7 +42,7 @@ class GetWorkEntryResponse implements \JsonSerializable
             'id' => $this->id,
             'user' => $this->user,
             'startDate' => $this->startDate->format('Y-m-d H:i:s'),
-            'endDate' => $this->endDate?->format('Y-m-d H:i'),
+            'endDate' => $this->endDate?->format('Y-m-d H:i:s'),
             'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
             'updatedAt' => $this->updatedAt->format('Y-m-d H:i:s'),
         ];

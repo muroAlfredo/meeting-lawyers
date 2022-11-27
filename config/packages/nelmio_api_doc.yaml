@@ -63,6 +63,10 @@ nelmio_api_doc:
                     required:
                         - userId
                         - startDate
+                UpdateWorkEntryDto:
+                    required:
+                        - userId
+                        - startDate
                 BadRequestExceptionResponse:
                     type: object
                     properties:
@@ -104,4 +108,5 @@ nelmio_api_doc:
             - { alias: GetUsersCollectionResponse, type: App\Response\User\GetUsersCollectionResponse }
             #WorkEntry
             - { alias: CreateWorkEntryDto, type: App\Dto\WorkEntry\CreateWorkEntryDto }
+            - { alias: UpdateWorkEntryDto, type: App\Dto\WorkEntry\UpdateWorkEntryDto }
             - { alias: GetWorkEntryResponse, type: App\Response\WorkEntry\GetWorkEntryResponse }
